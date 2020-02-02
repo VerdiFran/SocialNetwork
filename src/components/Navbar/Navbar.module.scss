@@ -1,0 +1,21 @@
+@import "./../../colors";
+
+.nav {
+    grid-area: nav;
+    width: 100px;
+    background-color: transparent;
+    
+    div {
+        margin: 20px 30px;
+    }
+
+    a {
+        font-size: 10pt;
+        color: $second-text-color;
+        text-decoration: none;
+
+        &:hover {
+            color: $text-color;
+        }
+    }
+}

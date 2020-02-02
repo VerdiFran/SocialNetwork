@@ -1,0 +1,17 @@
+@import "./colors";
+@import "./fonts";
+
+.app-wrapper {
+    display: grid;
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 1fr 2fr 10fr 1fr;
+    grid-template-areas:
+        'header header header header'
+        '. nav content .';
+    width: 100vw;
+    min-width: 1250px;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: transparent;
+    box-shadow: 5px 5px 5px 0 $shadow-color;
+}

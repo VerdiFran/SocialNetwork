@@ -1,0 +1,14 @@
+@import "./../../../colors";
+
+.info {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+
+  img {
+    width: 200px;
+    height: 200px;
+    box-shadow: 3px 3px 4px 0 $shadow-color;
+    object-fit: cover;
+  }
+}
