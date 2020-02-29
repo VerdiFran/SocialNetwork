@@ -1,0 +1,46 @@
+@import "./../../../colors";
+@import "./../../../mixins";
+
+.postContainer {
+    grid-area: posts;
+    padding: 20px;
+    background-color: $main-color;
+    overflow-y: auto;
+    @include scroll-style();
+
+    h2 {
+        margin: 0 0 20px 0;
+    }
+}
+
+.postList {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.newPost {
+    width: 100%;
+    height: auto;
+    margin: 20px 0 50px 0;
+
+    textarea {
+        width: calc(100% - 16px);
+        padding: 8px;
+        min-height: 60px;
+        max-height: 180px;
+        border: 1px solid $second-color;
+        resize: vertical;
+
+        &:hover, &:focus, &:active {
+            outline: none;
+        }
+        &:active, &:focus {
+            outline: 3px dashed $main-color;
+        }
+    }
+    button {
+        @include button(140px);
+        margin: 8px 0;
+        float: right;
+    }
+}

@@ -1,0 +1,31 @@
+@import "./../../colors.scss";
+@import "./../../fonts.scss";
+@import "./../../mixins";
+
+.dialogs {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: auto 140px;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+        'messages dialogs'
+        'newMessage dialogs';
+    background: transparent;
+}
+
+.dialogsItems {
+    width: 100%;
+    height: 100%;
+    grid-area: dialogs;
+}
+
+.messages {
+    width: 100%;
+    height: 100%;
+    /*padding: 20px 30px;*/
+    grid-area: messages;
+    background-color: $main-color;
+    overflow-y: auto;
+    @include scroll-style()
+}

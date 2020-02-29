@@ -1,0 +1,28 @@
+@import "./../../../colors.scss";
+
+.dialog {
+    display: flex;
+    margin: 20px;
+    flex-direction: row;
+    align-items: center;
+
+    img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        border-radius: 50%;
+        background-color: $second-color;
+    }
+    a {
+        font-size: 10pt;
+        color: $second-text-color;
+        text-decoration: none;
+
+        &:hover {
+            color: $text-color;
+        }
+        &.active {
+            color: $second-color;
+        }
+    }
+}

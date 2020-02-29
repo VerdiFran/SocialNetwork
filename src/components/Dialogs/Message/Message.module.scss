@@ -1,0 +1,53 @@
+@import "./../../../colors.scss";
+@import "./../../../fonts.scss";
+
+.message {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    
+    div:first-of-type {
+        display: flex;
+        width: 80px;
+        flex-direction: column;
+        align-items: center;
+        img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+            border-radius: 50%;
+            background-color: $second-color;
+        }
+        span {
+            text-align: center;
+            word-wrap: normal;
+            color: $text-color;
+            font-size: 8pt;
+        }
+    }
+    div:last-of-type {
+        display: flex;
+        width: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        div {
+            width: auto;
+            padding: 10px 10px;
+            background-color: $bg-color;
+            border-radius: 8px;
+        }
+        span {
+            margin-bottom: 5px;
+            font-size: 8pt;
+            font-style: italic;
+        }
+    }
+}
+
+.myMessage {
+    flex-direction: row-reverse;
+
+    div:last-of-type {
+        align-items: flex-end;
+    }
+}

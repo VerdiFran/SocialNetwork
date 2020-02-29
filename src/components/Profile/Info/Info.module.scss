@@ -1,14 +1,20 @@
 @import "./../../../colors";
 
 .info {
-  display: flex;
-  flex-direction: row;
-  margin: 20px;
+    display: flex;
+    flex-direction: column;
+    grid-area: info;
+    width: 100%;
+    height: 100%;
+    align-items: center;
 
-  img {
-    width: 200px;
-    height: 200px;
-    box-shadow: 3px 3px 4px 0 $shadow-color;
-    object-fit: cover;
-  }
+    img {
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        border: 2px solid $second-color;
+        border-radius: 50%;
+        /*box-shadow: 3px 3px 4px 0 $shadow-color;*/
+        object-fit: cover;
+    }
 }

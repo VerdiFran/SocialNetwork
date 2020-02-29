@@ -2,10 +2,17 @@
 @import "./fonts.scss";
 
 body {
-  margin: 0;
-  background-color: $bg-color;
-  font-family: $main-font;
-  color: $text-color;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    height: 100vh;
+    background-color: $bg-color;
+    font-family: $main-font;
+    color: $text-color;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    & > div {
+        height: 100%;
+        width: 100%;
+        display: flex;
+    }
 }

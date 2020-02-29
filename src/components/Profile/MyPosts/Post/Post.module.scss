@@ -1,9 +1,35 @@
+@import "./../../../../colors";
+@import "./../../../../mixins";
+
 
 .post {
-  img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
+    width: calc(100% - 20px);
+    height: auto;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        'author text'
+        '. likes';
+    border-top: 1px solid $second-color;
+    word-break: break-word;
+    word-wrap: normal;
+
+    img {
+        width: 50px;
+        height: 50px;
+        grid-area: author;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
+.text {
+    grid-area: text;
+}
+
+.likes {
+    grid-area: likes;
+    @extend %likes;
 }
