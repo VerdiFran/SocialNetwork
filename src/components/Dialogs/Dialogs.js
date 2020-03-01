@@ -2,13 +2,13 @@ import React from 'react'
 import DialogItem from "./DialogItem/DialogItem"
 import Message from "./Message/Message"
 import styles from './Dialogs.module.scss'
-import NewMessage from "./NewMessage/NewMessage"
+import NewMessageContainer from "./NewMessage/NewMessageContainer"
 
 const Dialogs = (props) => {
     return (
         <div className={styles.dialogs}>
             <div className={styles.messages}>
-                { props.data.messages.map(message =>
+                {props.messages.map(message =>
                     <Message
                         text={message.text}
                         key={message.id}
@@ -18,19 +18,15 @@ const Dialogs = (props) => {
                 }
             </div>
             <div className={styles.dialogsItems}>
-                { props.data.dialogs.map(dialog =>
+                {props.dialogs.map(dialog =>
                     <DialogItem
                         name={dialog.name}
                         id={dialog.id}
                         key={dialog.id}
-                    />) }
+                    />)}
             </div>
-            <NewMessage
-                newMessageText={props.data.newMessageText}
-                dispatch={props.dispatch}
-            />
-        </div>
-    )
+            <NewMessageContainer/>
+        </div>)
 }
 
 export default Dialogs

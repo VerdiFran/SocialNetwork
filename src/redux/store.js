@@ -1,8 +1,6 @@
+import profileReducer from "./profileReducer"
+import dialogsReducer from "./dialogsReducer"
 
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
-const SEND_MESSAGE = 'SEND-MESSAGE'
 
 let store = {
     _state: {
@@ -49,59 +47,11 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer
     },
-    _addPost() {
-        this._state.profilePage.posts.push(
-            {
-                id: Math.random() * 10000,
-                text: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-        )
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber(this._state);
-    },
-    _updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
-    },
-    _updateNewMessageText(newText) {
-        this._state.dialogsPage.newMessageText = newText
-        this._callSubscriber(this._state)
-    },
-    _sendMessage() {
-        let text = this._state.dialogsPage.newMessageText
-        this._state.dialogsPage.newMessageText = ""
-        this._state.dialogsPage.messages.push({
-            id: Math.random() * 10000,
-            text: text,
-            sender: 'Mark',
-            time: '29.03.20 11:59'
-        })
-        this._callSubscriber(this._state)
-    },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            this._addPost()
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._updateNewPostText(action.newText)
-        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._updateNewMessageText(action.newText)
-        } else if (action.type === SEND_MESSAGE) {
-            this._sendMessage()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._callSubscriber(this._state)
     }
 }
-
-export const addPostActionCreator = () => ({ type: ADD_POST })
-export const updateNewPostActionCreator = (text) => ({
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text
-})
-
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE })
-export const updateNewMessageTextCreator = (text) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newText: text
-})
 
 export default store

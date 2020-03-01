@@ -1,18 +1,15 @@
 import React from 'react'
 import Post from "./Post/Post"
 import styles from './MyPosts.module.scss'
-import {addPostActionCreator, updateNewPostActionCreator} from "../../../redux/state"
 
 const MyPosts = (props) => {
-    let newPostElement = React.createRef()
-
-    let onAddPostClick = () => {
-        props.dispatch(addPostActionCreator())
+    let onAddPost = () => {
+        props.addPost()
     }
 
     let onNewPostTextChange = (e) => {
         let text = e.target.value
-        props.dispatch(updateNewPostActionCreator(text))
+        props.updateNewPostText(text)
     }
 
     return (
@@ -22,10 +19,9 @@ const MyPosts = (props) => {
                 <textarea
                     placeholder='Enter text'
                     value={props.newPostText}
-                    ref={newPostElement}
                     onChange={onNewPostTextChange}
                 />
-                <button onClick={onAddPostClick}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
             <div className={styles.postList}>
                 {props.posts.map(post =>

@@ -32,6 +32,7 @@
         align-items: flex-start;
         div {
             width: auto;
+            max-width: 300px;
             padding: 10px 10px;
             background-color: $bg-color;
             border-radius: 8px;

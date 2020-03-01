@@ -1,18 +1,15 @@
 import React from "react"
 import styles from './NewMessage.module.scss'
-import {sendMessageCreator, updateNewMessageTextCreator} from "../../../redux/state"
 
 
 const NewMessage = (props) => {
-    let newMessageElement = React.createRef()
-
-    const onSendMessageClick = () => {
-        props.dispatch(sendMessageCreator())
+    const onSendMessage = () => {
+        props.sendMessage()
     }
 
-    const onNewMessageChange = (e) => {
+    const onNewMessageTextChange = (e) => {
         let text = e.target.value
-        props.dispatch(updateNewMessageTextCreator(text))
+        props.updateNewMessageText(text)
     }
 
     return (
@@ -20,11 +17,10 @@ const NewMessage = (props) => {
             <textarea
                 placeholder='Enter your message'
                 value={props.newMessageText}
-                ref={newMessageElement}
-                onChange={onNewMessageChange}
+                onChange={onNewMessageTextChange}
             />
             <button
-                onClick={onSendMessageClick}
+                onClick={onSendMessage}
             >Send message</button>
         </div>
     )
