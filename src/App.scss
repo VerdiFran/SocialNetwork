@@ -3,9 +3,11 @@
 
 .app-wrapper {
     display: grid;
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr 9fr;
     grid-template-columns: 1fr 4fr;
-    grid-template-areas: 'nav content';
+    grid-template-areas:
+            'cUser content'
+            'nav content';
     width: 85%;
     min-width: 1100px;
     height: 90%;
@@ -23,6 +25,26 @@
     grid-area: content;
     width: 100%;
     height: 100%;
+    /*display: grid;
+    grid-template-areas: 'main';*/
     background-color: transparent;
-    overflow-y: auto;
+    overflow-y: hidden;
+}
+
+.preloader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    //grid-area: main;
+    justify-content: center;
+    background-color: $main-color;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    z-index: 10;
+
+    & > img {
+        width: 120px;
+        height: 120px;
+        margin: auto;
+    }
 }
