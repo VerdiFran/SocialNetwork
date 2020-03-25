@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Users.module.scss'
 import {NavLink} from "react-router-dom"
 import * as axios from "axios"
+import {usersAPI} from "../../api/api"
 
 const Users = (props) => {
     return (
@@ -22,49 +23,23 @@ const Users = (props) => {
                                 user.followed
                                     ? <button
                                         className={`${styles.followBtn} ${styles.followed}`}
-                                        onClick={() => {
-                                            axios
-                                                .delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                                    {
-                                                        withCredentials: true,
-                                                        headers: {
-                                                            'API-KEY': '9a818970-b58c-4bf2-9d67-b5d1ac597540'
-                                                        }
-                                                    })
-                                                .then(response => {
-                                                    if (response.data.resultCode === 0) {
-                                                        props.unfollow(user.id)
-                                                    }
-                                                })
-                                        }}
+                                        disabled={props.followingInProgress.some(id => id === user.id)}
+                                        onClick={() => {props.unfollow(user.id)}}
                                     >Unfollow</button>
                                     : <button
                                         className={styles.followBtn}
-                                        onClick={() => {
-                                            axios
-                                                .post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                                    {}, {
-                                                        withCredentials: true,
-                                                        headers: {
-                                                            'API-KEY': '9a818970-b58c-4bf2-9d67-b5d1ac597540'
-                                                        }
-                                                    })
-                                                .then(response => {
-                                                    if (response.data.resultCode === 0) {
-                                                        props.follow(user.id)
-                                                    }
-                                                })
-                                        }}
+                                        disabled={props.followingInProgress.some(id => id === user.id)}
+                                        onClick={() => {props.follow(user.id)}}
                                     >Follow</button>
                             }
                         </div>
                     ))
                 }
-                <button
+                {props.users.length < props.totalUsersCount && <button
                     className={styles.moreUsersBtn}
                     onClick={props.getMoreUsers}
                 >More users
-                </button>
+                </button>}
             </div>
         </div>
     )
