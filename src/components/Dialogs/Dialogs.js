@@ -2,9 +2,13 @@ import React from 'react'
 import DialogItem from "./DialogItem/DialogItem"
 import Message from "./Message/Message"
 import styles from './Dialogs.module.scss'
-import NewMessageContainer from "./NewMessage/NewMessageContainer"
+import NewMessageFormContainer from "./NewMessageForm/NewMessageFormContainer"
 
 const Dialogs = (props) => {
+    const addNewMessage = (values) => {
+        props.sendMessage(values.newMessageText)
+    }
+
     return (
         <div className={styles.dialogs}>
             <div className={styles.messages}>
@@ -25,7 +29,7 @@ const Dialogs = (props) => {
                         key={dialog.id}
                     />)}
             </div>
-            <NewMessageContainer/>
+            <NewMessageFormContainer onSubmit={addNewMessage}/>
         </div>)
 }
 

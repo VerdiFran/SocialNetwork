@@ -22,49 +22,33 @@ let initialState = {
         {id: 9, text: '...', sender: 'Anna', time: '20.01.20 18:12'},
         {id: 10, text: 'Hi', sender: 'Anna', time: '20.01.20 16:33'}
     ],
-    newMessageText : ''
+    messageId: 11
 }
 
 const dialogsReducer = (state = initialState, action) => {
 
-    const updateNewMessageText = (newText) => {
-        return {
-            ...state,
-            newMessageText: newText
-        }
-    }
-
-    const sendMessage = () => {
-        let stateCopy = {
-            ...state,
-            messages: [...state.messages]
-        }
-
-        let text = stateCopy.newMessageText
-        if (text !== '') {
-            stateCopy.newMessageText = ""
-            stateCopy.messages.push({
-                id: Math.random() * 10000,
-                text: text,
-                sender: 'Mark',
-                time: '29.03.20 11:59'
-            })
-        }
-
-        return stateCopy
-    }
-
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:
-            return  updateNewMessageText(action.newText)
+            return updateNewMessageText(action.newText)
         case SEND_MESSAGE:
-            return  sendMessage()
+            return {
+                ...state,
+                messages: action.newMessageText.length > 0
+                    ? [...state.messages, {
+                        id: state.messageId,
+                        text: action.newMessageText,
+                        sender: 'Mark',
+                        time: '29.03.20 11:59'
+                    }]
+                    : [...state.messages],
+                messageId: state.messageId + 1
+            }
         default:
             return state
     }
 }
 
-export const sendMessage = () => ({type: SEND_MESSAGE})
+export const sendMessage = (newMessageText) => ({type: SEND_MESSAGE, newMessageText})
 export const updateNewMessageText = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text})
 
 export default dialogsReducer
