@@ -33,14 +33,12 @@ const dialogsReducer = (state = initialState, action) => {
         case SEND_MESSAGE:
             return {
                 ...state,
-                messages: action.newMessageText.length > 0
-                    ? [...state.messages, {
-                        id: state.messageId,
-                        text: action.newMessageText,
-                        sender: 'Mark',
-                        time: '29.03.20 11:59'
-                    }]
-                    : [...state.messages],
+                messages: [...state.messages, {
+                    id: state.messageId,
+                    text: action.newMessageText,
+                    sender: 'Mark',
+                    time: '29.03.20 11:59'
+                }],
                 messageId: state.messageId + 1
             }
         default:

@@ -1,0 +1,15 @@
+@import "./../../../colors";
+
+.formControl.error {
+
+    textarea {
+        border: 2px dashed $error-color;
+    }
+    div {
+    }
+}
+
+.errorMessage {
+    position: relative;
+    left: -40;
+}
