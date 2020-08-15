@@ -5,9 +5,9 @@ import {Textarea} from "../../../common/FormControls/FormControls"
 
 const maxLength10000 = maxLength(10000)
 
-const NewPostForm = (props) => {
+const NewPostForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <Field
                 placeholder='Enter text'
                 name={'newPostText'}

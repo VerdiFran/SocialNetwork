@@ -3,8 +3,8 @@ import Post from "./Post/Post"
 import styles from './MyPosts.module.scss'
 import NewPostForm from "./NewPostForm/NewPostForm"
 
-const MyPosts = (props) => {
-    const addNewPost = (values) => props.addPost(values.newPostText)
+const MyPosts = React.memo(({posts, addPost}) => {
+    const addNewPost = (values) => addPost(values.newPostText)
 
     return (
         <div className={styles.postContainer}>
@@ -13,7 +13,7 @@ const MyPosts = (props) => {
                 <NewPostForm onSubmit={addNewPost} />
             </div>
             <div className={styles.postList}>
-                {props.posts.map(post =>
+                {posts.map(post =>
                     <Post
                         text={post.text}
                         likesCount={post.likesCount}
@@ -23,6 +23,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+})
 
 export default MyPosts

@@ -1,5 +1,5 @@
 import React from "react"
-import {sendMessage, updateNewMessageText} from "../../../redux/dialogsReducer"
+import {sendMessage, updateNewMessageText} from "../../../redux/reducers/dialogsReducer"
 import NewMessageForm from "./NewMessageForm"
 import {connect} from "react-redux"
 

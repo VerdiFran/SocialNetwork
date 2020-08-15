@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './ProfileStatus.module.scss'
 
-class ProfileStatus extends React.Component {
+const ProfileStatus = (props) => {
 
-    state = {
+    /*state = {
         editMode: false,
         statusText: this.props.status
     }
@@ -33,30 +33,48 @@ class ProfileStatus extends React.Component {
         this.setState({
             statusText: e.target.value
         })
+    }*/
+
+    const [editMode, setEditMode] = useState(false)
+    const [status, setStatus] = useState(props.status)
+
+    useEffect(() => {
+        setStatus(props.status)
+    }, [props.status])
+
+    const activateEditMode = () => {
+        setEditMode(true)
     }
 
-    render() {
-        return (
-            <>
-                {
-                    !this.state.editMode
-                        ? <div className={styles.statusContainer}>
-                            <div onClick={this.activateEditMode}>
-                                {this.props.status === "" ? " " : this.props.status}
-                            </div>
-                        </div>
-                        : <div className={styles.statusEditContainer}>
-                            <input
-                                value={this.state.statusText}
-                                onChange={this.onStatusChange}
-                                onBlur={this.deactivateEditMode}
-                                autoFocus={true}
-                            />
-                        </div>
-                }
-            </>
-        )
+    const deactivateEditMode = () => {
+        setEditMode(false)
+        props.updateStatus(status)
     }
+
+    const onStatusChange = (e) => {
+        setStatus(e.currentTarget.value)
+    }
+
+    return (
+        <>
+            {
+                !editMode
+                    ? <div className={styles.statusContainer}>
+                        <div onClick={activateEditMode}>
+                            {props.status === '' ? ' ' : props.status}
+                        </div>
+                    </div>
+                    : <div className={styles.statusEditContainer}>
+                        <input
+                            value={status}
+                            onChange={onStatusChange}
+                            onBlur={deactivateEditMode}
+                            autoFocus={true}
+                        />
+                    </div>
+            }
+        </>
+    )
 
 }
 

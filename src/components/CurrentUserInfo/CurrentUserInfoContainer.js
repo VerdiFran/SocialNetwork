@@ -1,14 +1,11 @@
 import React from 'react'
 import CurrentUserInfo from "./CurrentUserInfo"
 import {connect} from "react-redux"
-import {getAuthUserData} from "../../redux/authReducer"
+import {logout} from '../../redux/reducers/authReducer'
+import {compose} from 'redux'
+import {withRouter} from 'react-router-dom'
 
 class CurrentUserInfoContainer extends React.Component {
-
-    componentDidMount() {
-        this.props.getAuthUserData()
-    }
-
     render() {
         return (<CurrentUserInfo {...this.props}/>)
     }
@@ -19,4 +16,7 @@ let mapStateToProps = (state) => ({
     login: state.auth.login
 })
 
-export default connect(mapStateToProps, {getAuthUserData})(CurrentUserInfoContainer)
+export default compose(
+    withRouter,
+    connect(mapStateToProps, {logout})
+)(CurrentUserInfoContainer)

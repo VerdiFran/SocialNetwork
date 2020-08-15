@@ -1,4 +1,4 @@
-import {profileAPI} from "../api/api"
+import {profileAPI} from '../../api/api'
 
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
@@ -49,20 +49,21 @@ export const addPost = (newPostText) => ({type: ADD_POST, newPostText})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setProfileStatus = (statusText) => ({type: SET_PROFILE_STATUS, statusText})
 
-export const getUserProfile = (userId) => (dispatch) => {
-    profileAPI.getProfile(userId)
-        .then(data => dispatch(setUserProfile(data)))
+export const getUserProfile = (userId) => async (dispatch) => {
+    let response = await profileAPI.getProfile(userId)
+    dispatch(setUserProfile(response))
 }
 
-export const getProfileStatus = (userId) => (dispatch) => {
-    profileAPI.getProfileStatus(userId).then(response => dispatch(setProfileStatus(response.data)))
+export const getProfileStatus = (userId) => async (dispatch) => {
+    let response = await profileAPI.getProfileStatus(userId)
+    dispatch(setProfileStatus(response.data))
 }
 
-export const updateProfileStatus = (statusText) => (dispatch) => {
-    profileAPI.updateProfileStatus(statusText).then(response => {
-        if (response.data.resultCode === 0)
-            dispatch(setProfileStatus(statusText))
-    })
+export const updateProfileStatus = (statusText) => async (dispatch) => {
+    let response = await profileAPI.updateProfileStatus(statusText)
+
+    if (response.data.resultCode === 0)
+        dispatch(setProfileStatus(statusText))
 }
 
 export default profileReducer

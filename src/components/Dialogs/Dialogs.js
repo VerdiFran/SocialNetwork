@@ -4,15 +4,15 @@ import Message from "./Message/Message"
 import styles from './Dialogs.module.scss'
 import NewMessageFormContainer from "./NewMessageForm/NewMessageFormContainer"
 
-const Dialogs = (props) => {
+const Dialogs = ({messages, dialogs, sendMessage}) => {
     const addNewMessage = (values) => {
-        props.sendMessage(values.newMessageText)
+        sendMessage(values.newMessageText)
     }
 
     return (
         <div className={styles.dialogs}>
             <div className={styles.messages}>
-                {props.messages.map(message =>
+                {messages.map(message =>
                     <Message
                         text={message.text}
                         key={message.id}
@@ -22,7 +22,7 @@ const Dialogs = (props) => {
                 }
             </div>
             <div className={styles.dialogsItems}>
-                {props.dialogs.map(dialog =>
+                {dialogs.map(dialog =>
                     <DialogItem
                         name={dialog.name}
                         id={dialog.id}

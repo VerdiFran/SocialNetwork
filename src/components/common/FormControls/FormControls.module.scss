@@ -13,3 +13,9 @@
     position: relative;
     left: -40;
 }
+
+.summaryErrorMessage {
+    width: 300px;
+    border: none;
+    color: $error-color;
+}

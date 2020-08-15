@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './Message.module.scss'
 
-const Message = (props) => {
+const Message = ({sender, time, text}) => {
     let classes = [styles.message]
 
-    if (props.sender === 'Mark') {
+    if (sender === 'Mark') {
         classes.push(styles.myMessage)
     }
 
@@ -12,11 +12,11 @@ const Message = (props) => {
         <div className={classes.join(' ')}>
             <div>
                 <img src='' alt=''/>
-                <span>{props.sender}</span>
+                <span>{sender}</span>
             </div>
             <div>
-                <span>{props.time}</span>
-                <div>{props.text}</div>
+                <span>{time}</span>
+                <div>{text}</div>
             </div>
         </div>
     )

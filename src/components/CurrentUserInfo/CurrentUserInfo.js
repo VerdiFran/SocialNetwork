@@ -2,12 +2,13 @@ import React from 'react'
 import styles from './CurrentUserInfo.module.scss'
 import {NavLink} from "react-router-dom"
 
-const CurrentUserInfo = (props) => {
+const CurrentUserInfo = ({isAuth, login, logout}) => {
     return (
         <div className={styles.currentUserInfo}>
-            {props.isAuth
+            {isAuth
                 ? <div>
-                    {props.login}
+                    {login}
+                    <button onClick={logout}>Logout</button>
                 </div>
                 : <NavLink to='/login'>
                     Login
